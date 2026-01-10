@@ -3,564 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Flowskyy | Fullstack Developer</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
+    <title>Christian Alvino - Creative Developer & Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;600;800;900&family=Poppins:wght@600;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <style>
-        /* --- CSS VARIABLES & RESET --- */
-        :root {
-            /* Warna Background Dominan (Sangat Gelap) */
-            --bg-dark: #0a0a0a; 
-            
-            /* Warna Aksen Neon */
-            --primary: #8B5CF6; /* Violet Neon */
-            --secondary: #EC4899; /* Pink Neon */
-            --accent-gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-
-            /* Warna Teks */
-            --text-light: #ffffff;
-            --text-gray: #d1d5db; /* Abu-abu terang agar mudah dibaca */
-
-            /* Glassmorphism Style (Kunci agar teks terbaca) */
-            --glass-bg: rgba(255, 255, 255, 0.03); /* Latar belakang transparan sangat tipis */
-            --glass-border: 1px solid rgba(255, 255, 255, 0.08); /* Garis tepi halus */
-            --glass-blur: blur(16px); /* Efek buram di belakang kaca */
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            /* Animated Gradient Background */
-            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #0f172a);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            
-            color: var(--text-light);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.7;
-            min-height: 100vh;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-        section { padding: 100px 10%; }
-
-        /* Utility Class: Glass Container */
-        .glass {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            -webkit-backdrop-filter: var(--glass-blur);
-            border: var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            border-radius: 16px;
-        }
-
-        /* --- NAVBAR --- */
-        nav {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            padding: 1.2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            /* Menerapkan glass effect pada navbar */
-            background: rgba(15, 23, 42, 0.8); /* Sedikit lebih gelap dari glass biasa */
-            backdrop-filter: blur(20px);
-            border-bottom: var(--glass-border);
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-        .logo span { color: var(--primary); }
-
-        .nav-links { display: flex; gap: 2.5rem; }
-        .nav-links a {
-            font-weight: 500;
-            font-size: 1rem;
-            color: var(--text-gray);
-            position: relative;
-            opacity: 0.8;
-        }
-        .nav-links a:hover, .nav-links a.active { color: var(--text-light); opacity: 1; }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
-            background: var(--accent-gradient); transition: 0.3s;
-        }
-        .nav-links a:hover::after { width: 100%; }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding-top: 80px;
-        }
-        .hero-content {
-            max-width: 800px;
-        }
-        .hero-badge {
-            display: inline-block;
-            padding: 8px 16px;
-            background: rgba(139, 92, 246, 0.1);
-            color: var(--primary);
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-        }
-        .hero h1 {
-            font-size: 4.5rem;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            font-weight: 800;
-        }
-        /* Efek teks gradien agar pop */
-        .gradient-text {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-gray);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto; margin-right: auto;
-        }
-        .hero-btns { display: flex; gap: 1.5rem; justify-content: center; }
-        .btn {
-            padding: 14px 35px;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.4s ease;
-            font-size: 1rem;
-            display: flex; align-items: center; gap: 10px;
-        }
-        .btn-primary { 
-            background: var(--accent-gradient);
-            border: none;
-            color: white;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-        }
-        .btn-outline {
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            background: transparent;
-            color: var(--text-light);
-        }
-        .btn:hover { transform: translateY(-5px); }
-        .btn-primary:hover { box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6); }
-        .btn-outline:hover { border-color: var(--primary); background: rgba(139, 92, 246, 0.1); }
-
-        /* --- SECTION TITLES --- */
-        .section-title {
-            text-align: center;
-            margin-bottom: 70px;
-        }
-        .section-title h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        .section-separator {
-            width: 80px; height: 4px; background: var(--accent-gradient);
-            margin: 0 auto; border-radius: 10px;
-        }
-
-        /* --- ABOUT SECTION --- */
-        .about-container {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
-            align-items: start;
-        }
-        /* Membungkus teks about dalam glass card agar terbaca jelas */
-        .about-text-card {
-            padding: 40px;
-        }
-        .about-text p {
-            margin-bottom: 25px;
-            color: var(--text-gray);
-            font-size: 1.05rem;
-        }
-        .highlight { color: var(--text-light); font-weight: 700; position: relative; z-index: 1; }
-        .highlight::before {
-            content: ''; position: absolute; bottom: 2px; left: 0; width: 100%; height: 8px;
-            background: var(--primary); opacity: 0.3; z-index: -1;
-        }
-        .education-box {
-            margin-top: 30px;
-            padding: 25px;
-            background: rgba(139, 92, 246, 0.05);
-            border-left: 4px solid var(--primary);
-            border-radius: 0 12px 12px 0;
-        }
-
-        /* --- SKILLS --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 20px;
-            justify-content: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .skill-card {
-            padding: 20px;
-            text-align: center;
-            transition: 0.4s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            cursor: default;
-        }
-        .skill-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.5);
-        }
-        .skill-card i { font-size: 2.5rem; }
-        .skill-card span { font-weight: 600; font-size: 0.9rem; }
-
-        /* --- PROJECTS --- */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 35px;
-        }
-        .project-card {
-            padding: 35px;
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-        /* Efek glow halus saat hover card */
-        .project-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--accent-gradient); opacity: 0; transition: 0.4s; z-index: -1;
-        }
-        .project-card:hover { transform: translateY(-12px); border-color: transparent; }
-        .project-card:hover::before { opacity: 0.1; }
-
-        .card-header {
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;
-        }
-        .folder-icon { font-size: 2.5rem; color: var(--primary); }
-        .external-link { font-size: 1.4rem; color: var(--text-gray); transition: 0.3s; }
-        .external-link:hover { color: var(--primary); transform: rotate(-45deg); }
-
-        .project-card h3 { font-size: 1.6rem; margin-bottom: 15px; color: var(--text-light); }
-        .project-card p { color: var(--text-gray); font-size: 0.95rem; flex-grow: 1; margin-bottom: 25px; }
-        
-        .tech-stack { display: flex; gap: 12px; flex-wrap: wrap; }
-        .tech-tag {
-            font-size: 0.8rem; font-weight: 600;
-            color: var(--primary);
-            padding: 5px 12px;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 50px;
-        }
-
-        /* --- CONTACT --- */
-        .contact-container { text-align: center; }
-        .contact-text p { font-size: 1.2rem; color: var(--text-gray); margin-bottom: 40px; }
-        .social-links {
-            display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;
-        }
-        .social-btn {
-            width: 70px; height: 70px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2rem;
-            color: var(--text-gray);
-            transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            background: var(--glass-bg);
-            border: var(--glass-border);
-        }
-        .social-btn:hover {
-            color: white; transform: translateY(-10px) rotate(360deg);
-        }
-        .sb-wa:hover { background: #25D366; border-color: #25D366; }
-        .sb-ig:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); border-color: transparent; }
-        .sb-tt:hover { background: #000000; border-color: white; }
-        .sb-sp:hover { background: #1DB954; border-color: #1DB954; }
-        .sb-gh:hover { background: #333; border-color: #333; }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center; padding: 50px;
-            color: var(--text-gray); font-size: 0.9rem;
-            border-top: var(--glass-border);
-            background: rgba(15, 23, 42, 0.6);
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 968px) {
-            .hero h1 { font-size: 3.5rem; }
-            .about-container { grid-template-columns: 1fr; }
-            nav { padding: 1rem 5%; }
-            .nav-links { display: none; } /* Menu mobile disederhanakan */
-            section { padding: 80px 5%; }
-        }
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 2.8rem; }
-            .hero-btns { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
-            .section-title h2 { font-size: 2.2rem; }
-        }
+        *{margin:0;padding:0;box-sizing:border-box}:root{--p:#3b82f6;--a:#8b5cf6;--s:#06b6d4;--g:#10b981;--t:#0f172a;--tl:#64748b;--b:#e2e8f0}html{scroll-behavior:smooth}body{font-family:'Plus Jakarta Sans',sans-serif;background:#fafbfc;color:var(--t);overflow-x:hidden}.mesh-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:radial-gradient(at 20% 30%,rgba(59,130,246,.15) 0,transparent 50%),radial-gradient(at 80% 50%,rgba(139,92,246,.12) 0,transparent 50%),radial-gradient(at 40% 80%,rgba(6,182,212,.1) 0,transparent 50%);animation:m 20s ease infinite}@keyframes m{0%,100%{opacity:1}50%{opacity:.8}}.shape{position:fixed;z-index:0;opacity:.05;animation:f 25s infinite ease-in-out}.shape-1{top:10%;left:5%;width:300px;height:300px;background:linear-gradient(135deg,var(--p),var(--s));border-radius:50% 40% 60% 50%}.shape-2{top:60%;right:10%;width:250px;height:250px;background:linear-gradient(135deg,var(--a),var(--p));border-radius:40% 60% 50% 40%;animation-delay:5s}.shape-3{bottom:10%;left:15%;width:200px;height:200px;background:linear-gradient(135deg,var(--s),var(--g));border-radius:60% 40% 50% 60%;animation-delay:10s}@keyframes f{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(50px,-50px) rotate(90deg)}50%{transform:translate(-30px,30px) rotate(180deg)}75%{transform:translate(30px,50px) rotate(270deg)}}.cursor-dot,.cursor-outline{border-radius:50%;position:fixed;pointer-events:none;z-index:9999}.cursor-dot{width:8px;height:8px;background:var(--p);transition:transform .2s}.cursor-outline{width:40px;height:40px;border:2px solid var(--p);z-index:9998;transition:all .15s;opacity:.5}nav{position:fixed;top:2rem;left:50%;transform:translateX(-50%);z-index:1000;background:rgba(255,255,255,.8);backdrop-filter:blur(20px);padding:.75rem 1.5rem;border-radius:50px;border:1px solid rgba(0,0,0,.05);box-shadow:0 10px 40px rgba(0,0,0,.08);transition:all .3s}nav:hover{box-shadow:0 15px 50px rgba(0,0,0,.12)}.nav-content{display:flex;gap:2rem;align-items:center}.logo{font-family:Poppins,sans-serif;font-size:1.2rem;font-weight:900;background:linear-gradient(135deg,var(--p),var(--a));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.nav-links{display:flex;gap:2rem;list-style:none}.nav-links a{color:var(--t);text-decoration:none;font-weight:600;font-size:.9rem;transition:all .3s;position:relative}.nav-links a::before{content:'';position:absolute;bottom:-5px;left:50%;width:0;height:2px;background:linear-gradient(90deg,var(--p),var(--a));transform:translateX(-50%);transition:width .3s}.nav-links a:hover{color:var(--p)}.nav-links a:hover::before{width:100%}.menu-toggle{display:none}.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:8rem 2rem 0;position:relative;overflow:hidden}.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1400px;width:100%;align-items:center}.hero-content h1{font-size:clamp(3rem,8vw,5.5rem);font-weight:900;line-height:1;margin-bottom:1.5rem;font-family:Poppins,sans-serif}.hero-content h1 .name{background:linear-gradient(135deg,var(--p) 0%,var(--a) 50%,var(--s) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:sh 3s linear infinite}@keyframes sh{to{background-position:200% center}}.hero-content .role{font-size:clamp(1.2rem,3vw,1.5rem);color:var(--tl);margin-bottom:1rem;font-weight:600}.hero-content .tagline{font-size:clamp(1rem,2vw,1.15rem);color:var(--tl);line-height:1.8;margin-bottom:2.5rem;max-width:550px}.status-pill{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(6,182,212,.1));border:2px solid var(--g);padding:.6rem 1.5rem;border-radius:50px;font-weight:700;color:var(--g);margin-bottom:2rem;animation:pr 2s cubic-bezier(.24,0,.38,1) infinite}@keyframes pr{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.4)}50%{box-shadow:0 0 0 15px rgba(16,185,129,0)}}.status-dot{width:10px;height:10px;background:var(--g);border-radius:50%;animation:bl 1.5s ease-in-out infinite}@keyframes bl{0%,100%{opacity:1}50%{opacity:.4}}.cta-group{display:flex;gap:1rem;flex-wrap:wrap}.btn{padding:1rem 2rem;border-radius:12px;font-weight:700;font-size:.95rem;border:none;cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;font-family:'Plus Jakarta Sans',sans-serif;position:relative;overflow:hidden}.btn::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:rgba(255,255,255,.3);transform:translate(-50%,-50%);transition:width .6s,height .6s}.btn:hover::before{width:300px;height:300px}.btn span,.btn i{position:relative;z-index:1}.btn-primary{background:linear-gradient(135deg,var(--p),var(--a));color:#fff;box-shadow:0 10px 30px rgba(59,130,246,.3)}.btn-primary:hover,.btn-outline:hover,.btn-success:hover{transform:translateY(-3px)}.btn-primary:hover{box-shadow:0 15px 40px rgba(59,130,246,.4)}.btn-outline{background:transparent;color:var(--p);border:2px solid var(--p)}.btn-outline:hover{background:var(--p);color:#fff}.btn-success{background:linear-gradient(135deg,var(--g),#059669);color:#fff;box-shadow:0 10px 30px rgba(16,185,129,.3)}.btn-success:hover{box-shadow:0 15px 40px rgba(16,185,129,.4)}.hero-visual{position:relative;height:600px}.bento-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;height:100%}.bento-item{background:#fff;border-radius:30px;padding:2rem;box-shadow:0 20px 60px rgba(0,0,0,.08);display:flex;flex-direction:column;justify-content:center;align-items:center;transition:all .4s cubic-bezier(.4,0,.2,1);border:1px solid rgba(0,0,0,.05);position:relative;overflow:hidden}.bento-item::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--p),var(--a));opacity:0;transition:opacity .3s}.bento-item:hover{transform:translateY(-10px);box-shadow:0 30px 80px rgba(59,130,246,.2)}.bento-item:hover::before{opacity:.05}.bento-item:nth-child(1){grid-row:span 2}.bento-icon{font-size:4rem;margin-bottom:1rem;position:relative;z-index:1}.bento-text{text-align:center;position:relative;z-index:1}.bento-text h3{font-size:1.2rem;font-weight:800;margin-bottom:.5rem;font-family:Poppins,sans-serif}.bento-text p{color:var(--tl);font-size:.9rem;font-weight:600}.quick-stats{display:flex;gap:3rem;margin-top:3rem}.stat{text-align:center}.stat-number{font-size:2.5rem;font-weight:900;font-family:Poppins,sans-serif;background:linear-gradient(135deg,var(--p),var(--a));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.stat-label{color:var(--tl);font-size:.9rem;font-weight:600;margin-top:.25rem}section{padding:8rem 2rem 2rem;position:relative}.section-header{text-align:center;margin-bottom:5rem;position:relative}.section-label{display:inline-block;background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(139,92,246,.1));color:var(--p);padding:.5rem 1.5rem;border-radius:50px;font-size:.85rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.5rem}.section-title{font-size:clamp(2.5rem,6vw,4rem);font-weight:900;font-family:Poppins,sans-serif;line-height:1.1;margin-bottom:1rem}.section-subtitle{font-size:1.15rem;color:var(--tl);max-width:600px;margin:0 auto}.pkl-container,.projects-grid,.skills-grid,.about-wrapper,.skills-wrapper,.projects-wrapper,.contact-wrapper{max-width:1400px;margin:0 auto}.contact-wrapper{max-width:900px}.pkl-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2.5rem}.pkl-card,.project-box{background:#fff;border-radius:25px;box-shadow:0 20px 60px rgba(0,0,0,.06);transition:all .4s cubic-bezier(.4,0,.2,1);border:1px solid rgba(0,0,0,.05);position:relative;overflow:hidden}.pkl-card{padding:3rem 2rem;text-align:center}.pkl-card::after{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--p),var(--a));transform:scaleX(0);transition:transform .4s}.pkl-card:hover,.project-box:hover{transform:translateY(-10px)}.pkl-card:hover{box-shadow:0 30px 80px rgba(59,130,246,.15)}.pkl-card:hover::after{transform:scaleX(1)}.project-box{cursor:pointer}.project-box:hover{box-shadow:0 30px 80px rgba(59,130,246,.2)}.pkl-icon-wrapper,.project-icon-box{width:80px;height:80px;margin:0 auto 2rem;background:linear-gradient(135deg,var(--p),var(--a));border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:#fff;box-shadow:0 10px 30px rgba(59,130,246,.3);transition:all .3s}.project-icon-box{width:70px;height:70px;border-radius:18px;font-size:2rem;margin:0}.pkl-card:hover .pkl-icon-wrapper{transform:rotateY(360deg)}.pkl-card h3,.project-box h3{font-size:1.5rem;font-weight:800;margin-bottom:1rem;font-family:Poppins,sans-serif}.project-box h3{font-size:1.6rem}.pkl-card p,.project-box p{color:var(--tl);line-height:1.7}.project-box p{line-height:1.8;margin-bottom:1.5rem}.project-header{padding:2.5rem;display:flex;justify-content:space-between;align-items:center}.project-link-icon{font-size:1.8rem;color:var(--tl);transition:all .3s}.project-link-icon:hover{color:var(--p);transform:rotate(-45deg) scale(1.1)}.project-body{padding:0 2.5rem 2.5rem}.tech-badges{display:flex;gap:.75rem;flex-wrap:wrap}.tech-badge{background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(139,92,246,.1));color:var(--p);padding:.5rem 1rem;border-radius:50px;font-size:.85rem;font-weight:700}.about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:center}.profile-card{background:#fff;padding:2.5rem;border-radius:30px;box-shadow:0 30px 80px rgba(0,0,0,.1);text-align:center;position:relative;overflow:hidden}.profile-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(45deg,var(--p),var(--a),var(--s));animation:ro 10s linear infinite;opacity:.1}@keyframes ro{100%{transform:rotate(360deg)}}.profile-img{width:200px;height:200px;background:linear-gradient(135deg,var(--p),var(--a));border-radius:50%;margin:0 auto 1.5rem;display:flex;align-items:center;justify-content:center;font-size:6rem;position:relative;z-index:1;box-shadow:0 20px 60px rgba(59,130,246,.3)}.profile-name{font-size:2rem;font-weight:900;margin-bottom:.5rem;font-family:Poppins,sans-serif;position:relative;z-index:1}.profile-role{color:var(--p);font-weight:700;font-size:1.1rem;position:relative;z-index:1}.about-text h3{font-size:2.2rem;font-weight:900;margin-bottom:1.5rem;font-family:Poppins,sans-serif}.about-text p{color:var(--tl);line-height:1.9;margin-bottom:1.5rem;font-size:1.05rem}.highlight{color:var(--p);font-weight:700}.education-card{background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(139,92,246,.08));padding:2rem;border-radius:20px;margin-top:2rem;border-left:4px solid var(--p)}.education-card h4{font-size:1.3rem;font-weight:800;margin-bottom:.5rem;display:flex;align-items:center;gap:.75rem;color:var(--p)}.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2rem;margin-bottom:4rem}.skill-box{background:#fff;padding:2.5rem 1.5rem;border-radius:20px;text-align:center;transition:all .4s cubic-bezier(.4,0,.2,1);box-shadow:0 10px 40px rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.05);cursor:pointer;position:relative;overflow:hidden}.skill-box::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:left .5s}.skill-box:hover::before{left:100%}.skill-box:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 20px 60px rgba(59,130,246,.2);border-color:var(--p)}.skill-icon{font-size:3.5rem;margin-bottom:1.25rem}.skill-name{font-size:1rem;font-weight:800;margin-bottom:.5rem;font-family:Poppins,sans-serif}.skill-level{font-size:.8rem;color:var(--tl);background:rgba(59,130,246,.1);padding:.35rem .9rem;border-radius:50px;display:inline-block;font-weight:600}.soft-skills-box{background:#fff;padding:3rem;border-radius:30px;box-shadow:0 20px 60px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.05)}.soft-skills-box h3{font-size:2rem;font-weight:900;text-align:center;margin-bottom:2.5rem;font-family:Poppins,sans-serif}.soft-skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem}.soft-skill{display:flex;align-items:center;gap:1rem;padding:1.25rem;background:linear-gradient(135deg,rgba(59,130,246,.05),rgba(139,92,246,.05));border-radius:15px;transition:all .3s}.soft-skill:hover{background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(139,92,246,.1));transform:translateX(5px)}.soft-skill i{font-size:1.8rem;color:var(--p)}.soft-skill span{font-weight:700;color:var(--t)}.contact-box{background:#fff;padding:4rem 3rem;border-radius:30px;box-shadow:0 30px 80px rgba(0,0,0,.1);border:1px solid rgba(0,0,0,.05);margin-bottom:3rem}.contact-box h3{font-size:2rem;font-weight:900;text-align:center;margin-bottom:2.5rem;font-family:Poppins,sans-serif}.form-group{margin-bottom:2rem}.form-group label{display:block;font-weight:700;margin-bottom:.75rem;color:var(--t)}.form-group input,.form-group textarea{width:100%;padding:1.25rem 1.5rem;border:2px solid var(--b);border-radius:15px;font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;transition:all .3s;background:#fafbfc}.form-group input:focus,.form-group textarea:focus{outline:0;border-color:var(--p);background:#fff;box-shadow:0 0 0 4px rgba(59,130,246,.1)}.form-group textarea{resize:vertical;min-height:150px}.social-grid{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}.social-item{width:80px;height:80px;background:#fff;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;color:var(--t);transition:all .4s cubic-bezier(.4,0,.2,1);box-shadow:0 10px 40px rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.05);position:relative;overflow:hidden;text-decoration:none}.social-item::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity .3s}.social-item:hover{transform:translateY(-10px) scale(1.1);color:#fff;border-color:transparent}.social-item:hover::before{opacity:1}.social-wa::before{background:linear-gradient(135deg,#25D366,#128C7E)}.social-wa:hover{box-shadow:0 20px 50px rgba(37,211,102,.4)}.social-email::before{background:linear-gradient(135deg,var(--p),var(--a))}.social-email:hover{box-shadow:0 20px 50px rgba(59,130,246,.4)}.social-ig::before{background:radial-gradient(circle at 30% 107%,#fdf497 0,#fd5949 45%,#d6249f 60%,#285AEB 90%)}.social-ig:hover{box-shadow:0 20px 50px rgba(214,36,159,.4)}.social-gh::before{background:linear-gradient(135deg,#24292e,#000)}.social-gh:hover{box-shadow:0 20px 50px rgba(36,41,46,.4)}.social-item i{position:relative;z-index:1}footer{text-align:center;padding:4rem 2rem;background:#fff;border-top:1px solid var(--b)}footer p{color:var(--tl);font-size:1rem}.gradient-text{background:linear-gradient(135deg,var(--p),var(--a));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800}@media (max-width:1200px){.hero-grid,.about-grid{grid-template-columns:1fr;gap:3rem}.hero-visual{height:500px}}@media (max-width:968px){nav{top:1rem;left:1rem;right:1rem;transform:none;padding:1rem 1.5rem}.nav-content{justify-content:space-between}.nav-links{position:fixed;top:90px;left:1rem;right:1rem;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);flex-direction:column;padding:2rem;border-radius:20px;gap:1.5rem;opacity:0;visibility:hidden;transform:translateY(-20px);transition:all .3s;box-shadow:0 20px 60px rgba(0,0,0,.1)}.nav-links.active{opacity:1;visibility:visible;transform:translateY(0)}.menu-toggle{display:flex;flex-direction:column;gap:5px;cursor:pointer}.menu-toggle span{width:25px;height:2px;background:var(--t);transition:all .3s;border-radius:2px}.menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}.menu-toggle.active span:nth-child(2){opacity:0}.menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}.quick-stats{flex-wrap:wrap;gap:2rem}.bento-grid{grid-template-columns:1fr}.bento-item:nth-child(1){grid-row:span 1}section{padding:5rem 1.5rem}.projects-grid{grid-template-columns:1fr}.contact-box{padding:3rem 2rem}.hero-visual{height:auto;min-height:400px}.bento-item{padding:1.5rem}}@media (max-width:480px){.cta-group{flex-direction:column;width:100%}.btn{width:100%;justify-content:center}.quick-stats{justify-content:space-around}.stat{flex:1}.stat-number{font-size:2rem}.skills-grid{grid-template-columns:repeat(2,1fr);gap:1rem}}
     </style>
 </head>
 <body>
+    <div class="mesh-bg"></div>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="cursor-dot" id="d"></div>
+    <div class="cursor-outline" id="o"></div>
 
     <nav>
-        <div class="logo">Flowskyy<span>.</span></div>
-        <ul class="nav-links">
-            <li><a href="#home">Beranda</a></li>
-            <li><a href="#about">Tentang</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projek</a></li>
-            <li><a href="#contact">Kontak</a></li>
-        </ul>
+        <div class="nav-content">
+            <div class="logo">CA</div>
+            <ul class="nav-links" id="n">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="m"><span></span><span></span><span></span></div>
+        </div>
     </nav>
 
     <section class="hero" id="home">
-        <div class="hero-content" data-aos="fade-up" data-aos-duration="1200">
-            <span class="hero-badge">🚀 Fullstack Beginner & AI Enthusiast</span>
-            <h1>Hai, Saya <span class="gradient-text">Flowskyy</span></h1>
-            <p>Siswa SMK dan programmer yang memanfaatkan kecerdasan buatan (AI) sebagai asisten untuk menciptakan solusi web yang inovatif dan efisien.</p>
-            <div class="hero-btns">
-                <a href="#projects" class="btn btn-primary">
-                    Lihat Projek <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="https://github.com/Flowskyy" target="_blank" class="btn btn-outline">
-                    <i class="fab fa-github"></i> Github Profile
-                </a>
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="status-pill"><div class="status-dot"></div><span>Open for PKL - Juni 2026</span></div>
+                <h1>Hi, I'm<br><span class="name">Christian Alvino</span></h1>
+                <p class="role">Fullstack Developer & UI/UX Designer Student</p>
+                <p class="tagline">Siswa SMK Paramitha 2 yang passionate dalam menciptakan web solutions yang inovatif. Menggabungkan coding skills dengan design thinking untuk hasil yang optimal.</p>
+                <div class="cta-group">
+                    <a href="#contact" class="btn btn-success"><span>Available for PKL</span><i class="fas fa-arrow-right"></i></a>
+                    <a href="https://drive.google.com/file/d/YOUR_CV_ID/view" target="_blank" class="btn btn-primary"><span>Download CV</span><i class="fas fa-download"></i></a>
+                    <a href="#projects" class="btn btn-outline"><span>View Projects</span><i class="fas fa-arrow-down"></i></a>
+                </div>
+                <div class="quick-stats">
+                    <div class="stat"><div class="stat-number">5+</div><div class="stat-label">Projects</div></div>
+                    <div class="stat"><div class="stat-number">12+</div><div class="stat-label">Tech Stack</div></div>
+                    <div class="stat"><div class="stat-number">100%</div><div class="stat-label">Dedication</div></div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="bento-grid">
+                    <div class="bento-item"><div class="bento-icon">💻</div><div class="bento-text"><h3>Fullstack Dev</h3><p>Next.js, MySQL, & More</p></div></div>
+                    <div class="bento-item"><div class="bento-icon">🎨</div><div class="bento-text"><h3>UI/UX Design</h3><p>Figma & Canva Expert</p></div></div>
+                    <div class="bento-item"><div class="bento-icon">🎬</div><div class="bento-text"><h3>Video Editing</h3><p>CapCut User</p></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pkl">
+        <div class="section-header">
+            <span class="section-label">What I'm Looking For</span>
+            <h2 class="section-title">PKL Opportunity</h2>
+            <p class="section-subtitle">Mencari kesempatan untuk berkembang dan berkontribusi di industri tech</p>
+        </div>
+        <div class="pkl-container">
+            <div class="pkl-card">
+                <div class="pkl-icon-wrapper"><i class="fas fa-code"></i></div>
+                <h3>Posisi</h3>
+                <p>Frontend Developer, Fullstack Developer, Web Developer, atau UI/UX Designer</p>
+            </div>
+            <div class="pkl-card">
+                <div class="pkl-icon-wrapper"><i class="fas fa-calendar-alt"></i></div>
+                <h3>Duration</h3>
+                <p>6 bulan, mulai Juni 2026</p>
+            </div>
+            <div class="pkl-card">
+                <div class="pkl-icon-wrapper"><i class="fas fa-building"></i></div>
+                <h3>Industry</h3>
+                <p>Startup teknologi, Software House, Agency, atau Perusahaan IT</p>
+            </div>
+            <div class="pkl-card">
+                <div class="pkl-icon-wrapper"><i class="fas fa-map-marker-alt"></i></div>
+                <h3>Location</h3>
+                <p>Jakarta atau sekitarnya (onsite / hybrid / remote)</p>
             </div>
         </div>
     </section>
 
     <section id="about">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Tentang <span class="gradient-text">Saya</span></h2>
-            <div class="section-separator"></div>
+        <div class="section-header">
+            <span class="section-label">Get to Know Me</span>
+            <h2 class="section-title">About Me</h2>
         </div>
-        <div class="about-container">
-            <div class="about-text glass about-text-card" data-aos="fade-right">
-                <p>Saya adalah siswa <span class="highlight">SMK Paramitha 2</span> dengan ketertarikan mendalam pada teknologi web.</p>
-                <p>Meskipun pemula, saya terbiasa mengerjakan proyek nyata menggunakan HTML, CSS, JS, Next.js, dan MySQL. Saya percaya bahwa kolaborasi tim dan penggunaan tool modern seperti AI adalah kunci untuk pengembangan software yang cepat dan berkualitas.</p>
-                
-                <div class="education-box">
-                    <h4 style="color: var(--primary); margin-bottom: 10px;"><i class="fas fa-graduation-cap"></i> Pendidikan</h4>
-                    <h5 style="font-size: 1.1rem; font-weight: 700;">SMK Paramitha 2</h5>
-                    <p style="font-size: 0.95rem; margin-bottom: 5px;">Jurusan: Rekayasa Perangkat Lunak (RPL)</p>
-                    <p style="font-size: 0.9rem; color: var(--text-gray);">Tahun: 2024 - Sekarang</p>
+        <div class="about-wrapper">
+            <div class="about-grid">
+                <div class="about-image-box">
+                    <div class="profile-card">
+                        <div class="profile-img">👨‍💻</div>
+                        <h4 class="profile-name">Christian Alvino</h4>
+                        <p class="profile-role">Developer & Designer</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="about-stats" data-aos="fade-left" data-aos-delay="200">
-                <div class="glass" style="padding: 40px; text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                    <i class="fas fa-robot gradient-text" style="font-size: 5rem; margin-bottom: 30px;"></i>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 15px;">AI-Powered Workflow</h3>
-                    <p style="color: var(--text-gray);">
-                        "AI bukan pengganti, tapi akselerator. Saya menggunakannya untuk debugging, brainstorming ide, dan optimasi kode."
-                    </p>
+                <div class="about-text">
+                    <h3>Creative Developer with Design Mindset</h3>
+                    <p>Halo! Nama saya <span class="highlight">Christian Alvino</span>, biasa dipanggil Calvin. Saya adalah siswa <span class="highlight">SMK Paramitha 2</span> jurusan Rekayasa Perangkat Lunak dengan passion yang kuat dalam web development dan UI/UX design.</p>
+                    <p>Saat ini saya sedang <span class="highlight">mencari tempat PKL</span> untuk mengaplikasikan dan mengembangkan skill yang telah saya pelajari. Saya terbiasa mengerjakan proyek nyata menggunakan <span class="highlight">HTML, CSS, JavaScript, Next.js, MySQL</span>, serta design tools seperti <span class="highlight">Figma, Canva, dan CapCut</span>.</p>
+                    <p>Saya percaya bahwa kombinasi antara <span class="highlight">technical skills</span> dan <span class="highlight">design thinking</span> adalah kunci untuk menciptakan produk digital yang tidak hanya functional, tapi juga user-friendly dan aesthetic.</p>
+                    <div class="education-card">
+                        <h4><i class="fas fa-graduation-cap"></i> Education</h4>
+                        <h5 style="font-size:1.4rem;font-weight:900;margin-bottom:.5rem">SMK Paramitha 2</h5>
+                        <p style="margin:0;font-weight:600">Rekayasa Perangkat Lunak (RPL)</p>
+                        <p style="margin:0;color:var(--tl);font-size:.95rem">2024 - Present</p>
+                    </div>
+                    <div class="education-card">
+                        <h4><i class="fas fa-graduation-cap"></i> Education</h4>
+                        <h5 style="font-size:1.4rem;font-weight:900;margin-bottom:.5rem">SMP Strada Santa Anna</h5>
+                        <p style="margin:0;color:var(--tl);font-size:.95rem">2021 - 2024</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="skills">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Keahlian <span class="gradient-text">Teknis</span></h2>
-            <div class="section-separator"></div>
+        <div class="section-header">
+            <span class="section-label">My Expertise</span>
+            <h2 class="section-title">Technical Skills</h2>
+            <p class="section-subtitle">Tools dan teknologi yang saya kuasai untuk menciptakan solusi digital</p>
         </div>
-        <div class="skills-grid">
-            <div class="skill-card glass" data-aos="zoom-in" data-aos-delay="100">
-                <i class="fab fa-html5" style="color: #E34F26;"></i><span>HTML5</span>
+        <div class="skills-wrapper">
+            <div class="skills-grid">
+                <div class="skill-box"><div class="skill-icon"><i class="fab fa-html5" style="color:#E34F26"></i></div><div class="skill-name">HTML5</div><span class="skill-level">Intermediate</span></div>
+                <div class="skill-box"><div class="skill-icon"><i class="fab fa-css3-alt" style="color:#1572B6"></i></div><div class="skill-name">CSS3</div><span class="skill-level">Intermediate</span></div>
+                <div class="skill-box"><div class="skill-icon"><i class="fab fa-js" style="color:#F7DF1E"></i></div><div class="skill-name">JavaScript</div><span class="skill-level">Intermediate</span></div>
+                <div class="skill-box"><div class="skill-icon"><i class="fab fa-react" style="color:#61DAFB"></i></div><div class="skill-name">Next.js</div><span class="skill-level">Beginner</span></div>
+                <div class="skill-box"><div class="skill-icon"><i class="fas fa-database" style="color:#00758F"></i></div><div class="skill-name">MySQL</div><span class="skill-level">Beginner</span></div>
+                <div class="skill-box"><div class="skill-icon"><i class="fab fa-git-alt" style="color:#F05032"></i></div><div class="skill-name">Git & GitHub</div><span class="skill-level">Intermediate</span></div>
+                <div class="skill-box"><div class="skill-icon"><i class="fab fa-figma" style="color:#F24E1E"></i></div><div class="skill-name">Figma</div><span class="skill-level">Advanced</span></div>
+                <div class="skill-box"><div class="skill-icon"><i class="fas fa-palette" style="color:#00C4CC"></i></div><div class="skill-name">Canva</div><span class="skill-level">Advanced</span></div>
+                <div class="skill-box"><div class="skill-icon"><i class="fas fa-video" style="color:#000"></i></div><div class="skill-name">CapCut</div><span class="skill-level">Advanced</span></div>
+                <div class="skill-box"><div class="skill-icon"><i class="fas fa-robot" style="color:var(--p)"></i></div><div class="skill-name">AI Prompting</div><span class="skill-level">Intermediate</span></div>
+                <div class="skill-box"><div class="skill-icon"><i class="fas fa-pen-nib" style="color:var(--a)"></i></div><div class="skill-name">UI/UX Design</div><span class="skill-level">Intermediate</span></div>
             </div>
-            <div class="skill-card glass" data-aos="zoom-in" data-aos-delay="150">
-                <i class="fab fa-css3-alt" style="color: #1572B6;"></i><span>CSS3</span>
-            </div>
-            <div class="skill-card glass" data-aos="zoom-in" data-aos-delay="200">
-                <i class="fab fa-js" style="color: #F7DF1E;"></i><span>JavaScript</span>
-            </div>
-            <div class="skill-card glass" data-aos="zoom-in" data-aos-delay="250">
-                <i class="fab fa-react" style="color: #61DAFB;"></i><span>Next.js</span>
-            </div>
-            <div class="skill-card glass" data-aos="zoom-in" data-aos-delay="300">
-                <i class="fas fa-database" style="color: #00758F;"></i><span>MySQL</span>
-            </div>
-            <div class="skill-card glass" data-aos="zoom-in" data-aos-delay="350">
-                <i class="fab fa-git-alt" style="color: #F05032;"></i><span>Git & GitHub</span>
-            </div>
-            <div class="skill-card glass" data-aos="zoom-in" data-aos-delay="400">
-                <i class="fas fa-terminal" style="color: var(--secondary);"></i><span>AI Prompting</span>
-            </div>
-            <div class="skill-card glass" data-aos="zoom-in" data-aos-delay="450">
-                <i class="fas fa-layer-group" style="color: var(--primary);"></i><span>UI Design Basic</span>
+            <div class="soft-skills-box">
+                <h3>Soft Skills</h3>
+                <div class="soft-skills-grid">
+                    <div class="soft-skill"><i class="fas fa-users"></i><span>Teamwork & Collaboration</span></div>
+                    <div class="soft-skill"><i class="fas fa-lightbulb"></i><span>Problem Solving</span></div>
+                    <div class="soft-skill"><i class="fas fa-comments"></i><span>Communication Skills</span></div>
+                    <div class="soft-skill"><i class="fas fa-clock"></i><span>Time Management</span></div>
+                    <div class="soft-skill"><i class="fas fa-book-reader"></i><span>Fast Learner</span></div>
+                    <div class="soft-skill"><i class="fas fa-brain"></i><span>Critical Thinking</span></div>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="projects">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Projek <span class="gradient-text">Unggulan</span></h2>
-            <div class="section-separator"></div>
+        <div class="section-header">
+            <span class="section-label">My Work</span>
+            <h2 class="section-title">Featured Projects</h2>
+            <p class="section-subtitle">Beberapa project yang telah saya kerjakan dengan passion dan dedikasi</p>
         </div>
-        <div class="projects-grid">
-            
-            <div class="project-card glass" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-header">
-                    <i class="fas fa-heart folder-icon" style="color: var(--secondary);"></i>
-                    <a href="https://chevatodolist.vercel.app/" target="_blank" class="external-link" title="Buka Website">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
+        <div class="projects-wrapper">
+            <div class="projects-grid">
+                <div class="project-box">
+                    <div class="project-header">
+                        <div class="project-icon-box" style="background:linear-gradient(135deg,#ec4899,#f43f5e)"><i class="fas fa-heart"></i></div>
+                        <a href="https://chevatodolist.vercel.app/" target="_blank" class="project-link-icon"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="project-body">
+                        <h3>Cheva ToDo List</h3>
+                        <p>Aplikasi manajemen jadwal pribadi yang saya buat untuk pacar saya. Project ini menjadi sarana belajar deploy database ke hosting dan implementasi fullstack dengan Next.js.</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">Next.js</span>
+                            <span class="tech-badge">Database</span>
+                            <span class="tech-badge">Vercel</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>Cheva ToDo List</h3>
-                <p>Aplikasi manajemen jadwal pribadi yang saya buat untuk pacar saya. Project ini menjadi sarana belajar deploy database ke hosting dan implementasi fullstack dengan Next.js.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">Next.js</span>
-                    <span class="tech-tag">Database Hosting</span>
-                    <span class="tech-tag">Vercel</span>
+                <div class="project-box">
+                    <div class="project-header">
+                        <div class="project-icon-box"><i class="fas fa-school"></i></div>
+                        <a href="https://paramithasch.netlify.app/" target="_blank" class="project-link-icon"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="project-body">
+                        <h3>Website Sekolah</h3>
+                        <p>Proyek bulan November 2025. Mengembangkan website profil sekolah yang responsif, berisi galeri kegiatan, dan informasi akademik untuk siswa dan orang tua.</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">CSS</span>
+                            <span class="tech-badge">JavaScript</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="project-card glass" data-aos="fade-up" data-aos-delay="200">
-                <div class="card-header">
-                    <i class="fas fa-school folder-icon"></i>
-                    <a href="https://paramithasch.netlify.app/" target="_blank" class="external-link" title="Buka Website">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
+                <div class="project-box">
+                    <div class="project-header">
+                        <div class="project-icon-box" style="background:linear-gradient(135deg,#1DB954,#1ed760)"><i class="fas fa-music"></i></div>
+                        <a href="https://flowskyy.github.io/MusicLyricsProject/" target="_blank" class="project-link-icon"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <div class="project-body">
+                        <h3>TikTok Lyrics Trend</h3>
+                        <p>Project kreatif tahun lalu untuk mengikuti tren TikTok. Membuat tampilan lirik lagu interaktif dengan animasi CSS yang halus dan menarik.</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">CSS Animations</span>
+                            <span class="tech-badge">Frontend</span>
+                            <span class="tech-badge">GitHub Pages</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>Website Sekolah</h3>
-                <p>Proyek bulan November 2025. Mengembangkan website profil sekolah yang responsif, berisi galeri kegiatan, dan informasi akademik untuk siswa dan orang tua.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">HTML</span>
-                    <span class="tech-tag">CSS Modern</span>
-                    <span class="tech-tag">JavaScript</span>
-                </div>
-            </div>
-
-            <div class="project-card glass" data-aos="fade-up" data-aos-delay="300">
-                <div class="card-header">
-                    <i class="fas fa-music folder-icon" style="color: #1DB954;"></i>
-                    <a href="https://flowskyy.github.io/MusicLyricsProject/" target="_blank" class="external-link" title="Buka Website">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-                <h3>TikTok Lyrics Trend</h3>
-                <p>Project kreatif tahun lalu untuk mengikuti tren TikTok. Membuat tampilan lirik lagu interaktif dengan animasi CSS yang halus dan menarik.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">CSS Animations</span>
-                    <span class="tech-tag">Frontend</span>
-                    <span class="tech-tag">GitHub Pages</span>
-                </div>
-            </div>
-
-            <div class="project-card glass" data-aos="fade-up" data-aos-delay="400">
-                <div class="card-header">
-                    <i class="fas fa-code folder-icon" style="color: var(--text-gray);"></i>
-                    <a href="https://github.com/Flowskyy/First-Project" target="_blank" class="external-link" title="Buka Repository">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </div>
-                <h3>Algoritma & Logika C</h3>
-                <p>Jejak awal saya dalam pemrograman. Kumpulan kode bahasa C yang saya gunakan untuk memahami dasar-dasar algoritma, struktur data, dan logika computational.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">C Language</span>
-                    <span class="tech-tag">Problem Solving</span>
-                    <span class="tech-tag">Logic Foundation</span>
+                <div class="project-box">
+                    <div class="project-header">
+                        <div class="project-icon-box" style="background:linear-gradient(135deg,#64748b,#475569)"><i class="fas fa-code"></i></div>
+                        <a href="https://github.com/Flowskyy/First-Project" target="_blank" class="project-link-icon"><i class="fab fa-github"></i></a>
+                    </div>
+                    <div class="project-body">
+                        <h3>Algoritma & Logika C</h3>
+                        <p>Jejak awal saya dalam pemrograman. Kumpulan kode bahasa C yang saya gunakan untuk memahami dasar-dasar algoritma, struktur data, dan logika computational.</p>
+                        <div class="tech-badges">
+                            <span class="tech-badge">C Language</span>
+                            <span class="tech-badge">Problem Solving</span>
+                            <span class="tech-badge">Logic</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <section id="contact" class="contact-container">
-        <div class="section-title" data-aos="fade-up">
-            <h2>Mari <span class="gradient-text">Terhubung</span></h2>
-            <div class="section-separator"></div>
+    <section id="contact">
+        <div class="section-header">
+            <span class="section-label">Get in Touch</span>
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-subtitle">Tertarik untuk menerima saya PKL atau ingin berdiskusi tentang teknologi?</p>
         </div>
-        <div class="contact-text" data-aos="fade-up" data-aos-delay="100">
-            <p>Tertarik berkolaborasi atau sekadar ingin berdiskusi tentang teknologi dan AI? Temukan saya di sosial media.</p>
-        </div>
-        
-        <div class="social-links" data-aos="zoom-in-up" data-aos-delay="200">
-            <a href="https://wa.me/628123456789" target="_blank" class="social-btn sb-wa" title="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="https://instagram.com/username_anda" target="_blank" class="social-btn sb-ig" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://tiktok.com/@username_anda" target="_blank" class="social-btn sb-tt" title="TikTok">
-                <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://open.spotify.com/user/username_anda" target="_blank" class="social-btn sb-sp" title="Spotify">
-                <i class="fab fa-spotify"></i>
-            </a>
-            <a href="https://github.com/Flowskyy" target="_blank" class="social-btn sb-gh" title="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
+        <div class="contact-wrapper">
+            <div class="contact-box">
+                <h3>Send Me a Message</h3>
+                <form id="f">
+                    <div class="form-group">
+                        <label for="name">Nama</label>
+                        <input type="text" id="name" placeholder="Nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="msg">Pesan</label>
+                        <textarea id="msg" placeholder="Tulis pesan Anda..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%">
+                        <span>Kirim Pesan</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="social-grid">
+                <a href="https://wa.me/6285183092819?text=Halo%20Calvin%2C%20saya%20tertarik%20untuk%20membahas%20PKL" target="_blank" class="social-item social-wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:christianalvinomain@gmail.com" class="social-item social-email" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://instagram.com/cnxalvinnz" target="_blank" class="social-item social-ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/Flowskyy" target="_blank" class="social-item social-gh" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>Designed & Code with ❤️ and AI support by <span class="gradient-text" style="font-weight: 700;">Flowskyy</span> © 2026</p>
+        <p>Designed & Coded by <span class="gradient-text">Christian Alvino</span> © 2026</p>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Init Animation on Scroll dengan settingan yang lebih smooth
-        AOS.init({
-            duration: 1000, // Durasi animasi 1 detik
-            easing: 'ease-in-out-cubic', // Gaya animasi lebih halus
-            once: true, // Animasi hanya terjadi sekali saat di-scroll
-            mirror: false,
-            offset: 100 // Memicu animasi sedikit lebih awal sebelum elemen terlihat penuh
-        });
-
-        // Sticky Navbar Effect (Opsional: Menambahkan shadow saat di-scroll)
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.boxShadow = "0 4px 30px rgba(0, 0, 0, 0.1)";
-            } else {
-                nav.style.boxShadow = "none";
-            }
-        });
+const d=document.getElementById('d'),o=document.getElementById('o'),m=document.getElementById('m'),n=document.getElementById('n'),f=document.getElementById('f');if(window.innerWidth>968){window.addEventListener('mousemove',e=>{d.style.left=e.clientX+'px';d.style.top=e.clientY+'px';setTimeout(()=>{o.style.left=e.clientX+'px';o.style.top=e.clientY+'px'},50)});window.addEventListener('mousemove',e=>{const s=document.querySelectorAll('.shape'),x=e.clientX/window.innerWidth,y=e.clientY/window.innerHeight;s.forEach((sh,i)=>{const sp=(i+1)*20,xp=(x-.5)*sp,yp=(y-.5)*sp;sh.style.transform=`translate(${xp}px,${yp}px)`})})}m.addEventListener('click',()=>{m.classList.toggle('active');n.classList.toggle('active')});document.querySelectorAll('.nav-links a').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('active');n.classList.remove('active')}));f.addEventListener('submit',function(e){e.preventDefault();const nm=document.getElementById('name').value,em=document.getElementById('email').value,ms=document.getElementById('msg').value;fetch('https://formspree.io/f/xdaanlzw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:nm,email:em,message:ms,_replyto:em})}).then(r=>{if(r.ok){alert('Pesan berhasil dikirim! Terima kasih.');this.reset()}else{alert('Gagal mengirim pesan. Silakan coba lagi.')}}).catch(()=>alert('Terjadi kesalahan. Silakan coba lagi.'))});const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.style.opacity='1';en.target.style.transform='translateY(0)'}})},{threshold:.1,rootMargin:'0px 0px -100px 0px'});document.querySelectorAll('.pkl-card,.skill-box,.project-box,.soft-skill').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(40px)';el.style.transition='opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)';obs.observe(el)});document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t){const p=t.offsetTop-100;window.scrollTo({top:p,behavior:'smooth'})}}));document.querySelectorAll('.btn').forEach(b=>{b.addEventListener('mouseenter',()=>{if(window.innerWidth>968){d.style.transform='scale(2)';o.style.transform='scale(1.5)'}});b.addEventListener('mouseleave',()=>{if(window.innerWidth>968){d.style.transform='scale(1)';o.style.transform='scale(1)'}})});const ac=(el,tg,dur=2000)=>{let st=0;const inc=tg/(dur/16),tm=setInterval(()=>{st+=inc;if(st>=tg){el.textContent=tg+(el.textContent.includes('+')?'+':el.textContent.includes('%')?'%':'');clearInterval(tm)}else{el.textContent=Math.floor(st)+(el.textContent.includes('+')?'+':el.textContent.includes('%')?'%':'')}},16)},so=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting&&!en.target.classList.contains('animated')){en.target.classList.add('animated');const ns=en.target.querySelectorAll('.stat-number');ns.forEach(nu=>{const tg=parseInt(nu.textContent);ac(nu,tg)})}})},{threshold:.5}),ss=document.querySelector('.quick-stats');if(ss)so.observe(ss);document.querySelectorAll('.pkl-card').forEach((c,i)=>c.style.transitionDelay=`${i*.1}s`);document.querySelectorAll('.skill-box').forEach((b,i)=>b.style.transitionDelay=`${i*.05}s`);document.querySelectorAll('.project-box').forEach((b,i)=>b.style.transitionDelay=`${i*.1}s`);window.addEventListener('load',()=>{document.body.style.opacity='0';setTimeout(()=>{document.body.style.transition='opacity .5s ease';document.body.style.opacity='1'},100)})
     </script>
 </body>
 </html>
